@@ -3,25 +3,24 @@ window.requestAnimationFrame(loop);
 
 let timeScaleFactor = 1;
 
-loopFast();
-
-function loopFast() {
-    update(0.01 * timeScaleFactor);
-    setTimeout(() => loopFast());
-}
-
 function loop(timestamp) {
   const timeDeltaMilliseconds = timestamp - lastTimestamp;
   const timeDeltaSeconds = timeDeltaMilliseconds / 1000;
 
-  // update(timeDeltaSeconds * timeScaleFactor);
+  update(timeDeltaSeconds * timeScaleFactor);
   draw();
 
   lastTimestamp = timestamp;
   window.requestAnimationFrame(loop);
 }
 
+document.addEventListener('keydown', onKeyDown);
+
 document.addEventListener('wheel', onWheel);
+
+function onKeyDown(eventd) {
+    // loop(lastTimestamp + 100);
+}
 
 function onWheel(event) {
     let scaleFactor;
